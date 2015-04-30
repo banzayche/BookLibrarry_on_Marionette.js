@@ -10,8 +10,34 @@
 		<!-- /bootstrap -->
 	</head>
 	<body>
-		<h1 class="text-center">Hi everyone! It's just beginning :)</h1>
+		<div id="general-template" class="container">
+			<h1 class="text-center">Hi everyone! It's just beginning :)</h1>
+			<section id="header"></section>
+			<section id="main"></section>
+			<section id="footer"></section>
+		</div>
 	</body>
+	<!-- templates -->
+		<!-- single book model -->
+		<script type="text/template" id="book-template">
+			<td>Title</td>
+			<td>Author</td>
+			<td>Year</td>
+			<td>Genre</td>
+			<td>
+				<button class="btn btn-danger">Edit</button>
+				<button class="btn btn-primary">Delete</button>
+			</td>
+		</script>
+		<!-- /single book model -->
+
+		<!-- list of Book models -->
+		<script type="text/template" id="book-list-template">
+			<table class="table"></table>
+		</script>
+		<!-- /list of Book models -->
+	<!-- /templates -->
+	
 	<!-- marionette -->	
 	<script type="text/javascript" src="/bower_components/underscore/underscore.js"></script>
 	<script type="text/javascript" src="/bower_components/backbone/backbone.js"></script>
