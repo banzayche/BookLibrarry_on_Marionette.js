@@ -13,64 +13,55 @@ books = books.taskList();
 
 // переменная в которой происходит подсчет айди
 var nextId = books.length;
-// Указывается какую статическую дерикторию использовать по умолчанию
 app.use(express.static(__dirname + '/public'));
 app.use(bodyParser.json());
-
-// Ниже мы говорим, если наш реквест не запрашивает статические ресурсы, то он отдаст index.html
 app.use(function (req, res, next) {
-    // если запросим статические ресурсы - то отдаст их
     if(req.url.indexOf("/api") === 0 ||
         req.url.indexOf("/bower-components") === 0 ||
         req.url.indexOf("/scripts") === 0) {
         return next();
     }
-    // иначе - вернет следующий файл
+
     res.sendFile(__dirname + '/public/index.html');
 });
 
-// указывается работа с каким массивом будет проводиться, что будет отдаваться если запрашивается массив
 app.get('/api/books', function(req, res) {
     res.json(books);
 });
 
-// что будет отдаваться если запрашивается с айди
 app.get('/api/books/:id', function(req, res) {
     var book = books.filter(function(book) { return book.id == req.params.id; })[0];
 
     if(!book) {
         res.statusCode = 404;
-        return res.json({ msg: "book does not exist" });
+        return res.json({ msg: "Book does not exist" });
     }
 
     res.json(book);
 });
 
-// ПОСТ - это создание новых моделей на сервере
-// новая - если нет айди, это по умолчанию
 app.post('/api/books', function(req, res) {
-    if(!req.body.title || !req.body.date) {
+    if(!req.body.author || !req.body.title) {
         res.statusCode = 400;
         return res.json({ msg: "Invalid params sent" });
     }
 
-    var newbook = {
-        title: req.body.title,
-        author: req.body.author,
+    var newBook = {
+        author : req.body.author,
+        title : req.body.title,
         year: req.body.year,
-        description: req.body.description,
         genre: req.body.genre,
-        id: nextId++,
+        description: req.body.description,
+        id: nextId++
     };
 
-    books.push(newbook);
+    books.push(newBook);
 
-    res.json(newbook);
+    res.json(newBook);
 });
 
-// ПУТ - это изменение уже существующих на сервере моделей
 app.put('/api/books/:id', function(req, res) {
-    if(!req.body.title || !req.body.date) {
+    if(!req.body.author || !req.body.title) {
         res.statusCode = 400;
         return res.json({ msg: "Invalid params sent" });
     }
@@ -79,26 +70,24 @@ app.put('/api/books/:id', function(req, res) {
 
     if(!book) {
         res.statusCode = 404;
-        return res.json({ msg: "book does not exist" });
+        return res.json({ msg: "Book does not exist" });
     }
 
+    book.author = req.body.author;
     book.title = req.body.title;
-    book.author = req.body.done;
-    book.year = req.body.date;
-    book.description = req.body.description;
-    book.genre = req.body.date;
-    book.id = req.body.id;
+    book.year= req.body.year;
+    book.genre= req.body.genre;
+    book.description= req.body.description;
 
     res.json(book);
 });
 
-// Соответственно - удаление
 app.delete('/api/books/:id', function(req, res) {
     var book = books.filter(function(book) { return book.id == req.params.id; })[0];
 
     if(!book) {
         res.statusCode = 404;
-        return res.json({ msg: "book does not exist" });
+        return res.json({ msg: "Book does not exist" });
     }
 
     books.splice(books.indexOf(book), 1);

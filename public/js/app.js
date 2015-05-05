@@ -3,6 +3,9 @@
 
 // Создаем конструктор для нашего будущего приложения
 var MyLibrarryApp = Marionette.Application.extend({
+	initialize: function(){
+		
+	},
 	// Следующий метод будет выполняться автоматически при старте приложения.
 	onStart: function(){		
 		this.setRootLayout();

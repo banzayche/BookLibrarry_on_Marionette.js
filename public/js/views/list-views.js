@@ -7,12 +7,21 @@ var listViews = myLibrarryApp.module('listViews', function(listViews, MyLibrarry
 		tagName: 'tr',
 		template: '#book-template',
 		ui: {
-			destroy : '#delete', 
+			destroy : '#delete',
+			edit : '#edit',
 		},
 		events: {
 			'click @ui.destroy' : "destroyModel",
+			'click @ui.edit' : "goEdit",
 		},
-
+		modelEvents: {
+			'change' : 'render',
+		},
+		
+		goEdit: function(){
+			Backbone.history.navigate('book/'+this.model.get('id')+'/edit', {trigger:true, replace: true });
+		},
+		
 		destroyModel: function(){
 			this.model.destroy();
 		},
@@ -27,6 +36,21 @@ var listViews = myLibrarryApp.module('listViews', function(listViews, MyLibrarry
 		childView:  listViews.BookItemView,
 		// представление для пустой коллекции
 		emptyView: listViews.NoChildView,
+		ui: {
+			createBook : '#createBook',
+		},
+		events: {
+			'click @ui.createBook' : "goCreateBook",
+		},
+		// ul: {
+		// 	newBook : '#create-book'
+		// },
+		// events: {
+		// 	'click @ui.createBook' : 'goCreateBook'
+		// },
+		goCreateBook: function(){
+			Backbone.history.navigate('book/create', {trigger:true, replace: true });
+		}
 	});
 
 	// View for empty collection
