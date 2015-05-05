@@ -5,15 +5,15 @@ exports.taskList = function() {
             author: "Artem Cheh",
             year: 2001,
             genre: "story",
-            description: "none description",
+            description: "It is small and sad book. About boy's life and dreams.",
             id: 0
         },
         {
-            title: "Doc1",
-            author: "Artem Cheh",
-            year: 2001,
+            title: "Norvegian Wood",
+            author: "Haruki Murakami",
+            year: 1987,
             genre: "story",
-            description: "none description",
+            description: "It small paragraph about this book. It is a story about young people, they love and suffer!",
             id: 1
         },
         {

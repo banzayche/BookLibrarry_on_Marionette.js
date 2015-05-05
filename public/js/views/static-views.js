@@ -17,10 +17,27 @@ var staticViews = myLibrarryApp.module('staticViews', function(staticViews, MyLi
 		}
 	});
 
+	// Для подробного описания книги
+	staticViews.DetailBookView = Backbone.Marionette.ItemView.extend({
+		// указываем уже существующий в дом, элемент
+		template: '#book-detail-template',
+		model: MyLibrarryApp.modelCollection.Book,
+		ui: {
+			cancel : '#cancel',
+		},
+		events: {
+			'click @ui.cancel' : "goCancel",
+		},
+
+		goCancel: function(){
+			Backbone.history.navigate('home', {trigger:true, replace: true });
+		}
+	});
+
 	// представление, для редактирования модели
 	staticViews.EditBookView = Backbone.Marionette.ItemView.extend({
 		// указываем уже существующий в дом, элемент
-		template: '#edit-book',
+		template: '#edit-book-template',
 		model: MyLibrarryApp.modelCollection.Book,
 		ui: {
 			save : '#save',
@@ -70,7 +87,7 @@ var staticViews = myLibrarryApp.module('staticViews', function(staticViews, MyLi
 				this.ui.error.show();
 			}
 		},
-		
+
 		goCancel: function(){
 			Backbone.history.navigate('home', {trigger:true, replace: true });
 		}

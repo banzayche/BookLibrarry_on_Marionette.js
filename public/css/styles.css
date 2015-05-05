@@ -3,11 +3,9 @@ html, body{
 	padding: 0;
 	margin: 0;
 }
-
 .edit_delit{
 	width: 150px;
 }
-
 .error{
 	color: white;
 	background-color: red;
@@ -15,4 +13,8 @@ html, body{
 	text-align: center;
 	padding:10px 20px;
 	display: none; 
+}
+tbody>tr:hover{
+	transition: background-color .5s;
+	background-color: rgba(4,4,4,.3);
 }

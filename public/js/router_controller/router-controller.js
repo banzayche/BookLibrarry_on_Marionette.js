@@ -11,6 +11,7 @@ var routerController = myLibrarryApp.module('routerController', function(routerC
 		// будем обрабатывать все роуты и лишь потом вычислять, какие действия предпринимать
 		appRoutes: {			
 			'book/:id/edit': 'editBook',
+			'book/:id/detail': 'detailBook',
 			'book/create': 'editBook',
 			'*route' : 'RouterProcessing',			
 		},	
@@ -41,16 +42,20 @@ var routerController = myLibrarryApp.module('routerController', function(routerC
 				MyLibrarryApp.root.showChildView('main', book);	
 			}, 10);				
 		},
+		detailBook: function(id){
+			var newModel = MyLibrarryApp.GeneralCollection.get(id);
+			console.log(newModel)
+			var book = new MyLibrarryApp.staticViews.DetailBookView({	
+					model: newModel,
+				});
+			MyLibrarryApp.root.showChildView('main', book);	
+		},
 
 		RouterProcessing: function(route){
 			console.log('I have working with '+route+' route');
 			switch (route) {
 				case "home":
 					this.showMain();
-					break;
-
-				case "book/:id/edit":
-					this.showMain(id);
 					break;
 				default:
 			};			

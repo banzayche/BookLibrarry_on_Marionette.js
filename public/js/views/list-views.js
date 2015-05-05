@@ -13,6 +13,7 @@ var listViews = myLibrarryApp.module('listViews', function(listViews, MyLibrarry
 		events: {
 			'click @ui.destroy' : "destroyModel",
 			'click @ui.edit' : "goEdit",
+			'dblclick' : 'goDetail'
 		},
 		modelEvents: {
 			'change' : 'render',
@@ -20,6 +21,9 @@ var listViews = myLibrarryApp.module('listViews', function(listViews, MyLibrarry
 		
 		goEdit: function(){
 			Backbone.history.navigate('book/'+this.model.get('id')+'/edit', {trigger:true, replace: true });
+		},
+		goDetail: function(){
+			Backbone.history.navigate('book/'+this.model.get('id')+'/detail', {trigger:true, replace: true });
 		},
 		
 		destroyModel: function(){
@@ -55,7 +59,6 @@ var listViews = myLibrarryApp.module('listViews', function(listViews, MyLibrarry
 
 	// View for empty collection
 	listViews.NoChildView = Backbone.Marionette.ItemView.extend({
-		id: 'image-attention',
 		// указали шаблон
 		template: '#noChildView-template',
 	});

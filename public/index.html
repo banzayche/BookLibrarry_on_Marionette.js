@@ -54,12 +54,21 @@
 
 		<!-- no-child-view -->
 		<script type="text/template" id="noChildView-template">
-			<h3>No child</h3>
+			<td colspan="5"><h3>No child</h3></td>
 		</script>
 		<!-- /no-child-view -->
+		
+		<!-- book detail -->
+		<script type="text/template" id="book-detail-template">
+			<h3><%-title%></h3>
+			<h5><strong><%-author%></strong> &nbsp;&nbsp;&nbsp;&nbsp;<%-year%> year</h5>
+			<p><%-description%></p>
+			<botton class="btn btn-danger col-sm-4 col-md-4 col-xs-12 pull-right" id="cancel">Cancel</botton>
+		</script>
+		<!-- /book detail -->
 
 		<!-- edit model -->
-		<script type="text/template" id="edit-book">
+		<script type="text/template" id="edit-book-template">
 			<h3 class="error">You have to write Title, Author, Year and Genre of book.</h3>
 		  	<div class="form-group col-sm-12">
 		    	<label for="title" class="col-sm-2 control-label">Title</label>
