@@ -1,53 +1,69 @@
 exports.taskList = function() {
-    var todos = [
+    var books = [
         {
-            title: 'first task',
-            done: false,
-            date: '6575675',
+            title: "Doc1",
+            author: "Artem Cheh",
+            year: 2001,
+            genre: "story",
+            description: "none description",
             id: 0
         },
         {
-            title: 'second task',
-            done: false,
-            date: '554444',
+            title: "Doc1",
+            author: "Artem Cheh",
+            year: 2001,
+            genre: "story",
+            description: "none description",
             id: 1
         },
         {
-            title: 'third task',
-            done: false,
-            date: '222332',
-            id: 2
-        },
-        {
-            title: 'fourth task',
-            done: false,
-            date: '34534566',
+            title: "Doc1",
+            author: "Artem Cheh",
+            year: 2001,
+            genre: "story",
+            description: "none description",
             id: 3
         },
         {
-            title: 'fifth task',
-            done: false,
-            date: '5675685867',
+            title: "Doc1",
+            author: "Artem Cheh",
+            year: 2001,
+            genre: "story",
+            description: "none description",
             id: 4
         },
         {
-            title: 'six task',
-            done: false,
-            date: '546854867',
+            title: "Doc1",
+            author: "Artem Cheh",
+            year: 2001,
+            genre: "story",
+            description: "none description",
             id: 5
         },
         {
-            title: 'seventh task',
-            done: false,
-            date: '5686674856',
+            title: "Doc1",
+            author: "Artem Cheh",
+            year: 2001,
+            genre: "story",
+            description: "none description",
             id: 6
         },
         {
-            title: 'eigth task',
-            done: false,
-            date: '5468764863433',
+            title: "Doc1",
+            author: "Artem Cheh",
+            year: 2001,
+            genre: "story",
+            description: "none description",
             id: 7
         },
+        {
+            title: "Doc1",
+            author: "Artem Cheh",
+            year: 2001,
+            genre: "story",
+            description: "none description",
+            id: 8
+        },
     ];
-    return todos;
+    return books;
 };

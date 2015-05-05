@@ -13,29 +13,43 @@
 		<div id="general-template" class="container">
 			<h1 class="text-center">Hi everyone! It's just beginning :)</h1>
 			<section id="header"></section>
-			<section id="main"></section>
+			<section id="main" class="table-responsive"></section>
 			<section id="footer"></section>
 		</div>
 	</body>
 	<!-- templates -->
 		<!-- single book model -->
 		<script type="text/template" id="book-template">
-			<td>Title</td>
-			<td>Author</td>
-			<td>Year</td>
-			<td>Genre</td>
-			<td>
-				<button class="btn btn-danger">Edit</button>
-				<button class="btn btn-primary">Delete</button>
+			<td><%- title %></td>
+			<td><%- author %></td>
+			<td><%- genre %></td>
+			<td><%- year %></td>
+			<td class="edit_delit">
+				<button class="btn btn-primary">Edit</button>
+				<button class="btn btn-danger" id="delete">Delete</button>
 			</td>
 		</script>
 		<!-- /single book model -->
 
 		<!-- list of Book models -->
 		<script type="text/template" id="book-list-template">
-			<table class="table"></table>
+		    <thead>
+		        <tr>
+		            <th>Title</th>
+		            <th>Author</th>
+		            <th>Genre</th>
+		            <th>Year</th>
+		            <th>Edit/Delete</th>
+		        </tr>
+		    </thead>
 		</script>
 		<!-- /list of Book models -->
+
+		<!-- no-child-view -->
+		<script type="text/template" id="noChildView-template">
+			<h3>No child</h3>
+		</script>
+		<!-- /no-child-view -->
 	<!-- /templates -->
 	
 	<!-- marionette -->	

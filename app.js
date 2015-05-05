@@ -5,66 +5,14 @@ var bodyParser = require('body-parser');
 // делаем переменную ссылкой на модуль экспресс
 var app = express();
 
-// массив с начальными моделями
-// var todos = [
-//     {
-//         title: 'first task',
-//         done: false,
-//         date: '6575675',
-//         id: 0
-//     },
-//     {
-//         title: 'second task',
-//         done: false,
-//         date: '554444',
-//         id: 1
-//     },
-//     {
-//         title: 'third task',
-//         done: false,
-//         date: '222332',
-//         id: 2
-//     },
-//     {
-//         title: 'fourth task',
-//         done: false,
-//         date: '34534566',
-//         id: 3
-//     },
-//     {
-//         title: 'fifth task',
-//         done: false,
-//         date: '5675685867',
-//         id: 4
-//     },
-//     {
-//         title: 'six task',
-//         done: false,
-//         date: '546854867',
-//         id: 5
-//     },
-//     {
-//         title: 'seventh task',
-//         done: false,
-//         date: '5686674856',
-//         id: 6
-//     },
-//     {
-//         title: 'eigth task',
-//         done: false,
-//         date: '5468764863433',
-//         id: 7
-//     },
-// ];
-
 // Обращаемся к файлу tasks, который находится в этой же дирректории
-var todos = require('./tasks');
+var books = require('./tasks');
 // присваеваем переменной то, что возвращает нам код в файле
-todos = todos.taskList();
+books = books.taskList();
 
 
 // переменная в которой происходит подсчет айди
-var nextId = todos.length;
+var nextId = books.length;
 // Указывается какую статическую дерикторию использовать по умолчанию
 app.use(express.static(__dirname + '/public'));
 app.use(bodyParser.json());
@@ -82,74 +30,78 @@ app.use(function (req, res, next) {
 });
 
 // указывается работа с каким массивом будет проводиться, что будет отдаваться если запрашивается массив
-app.get('/api/todos', function(req, res) {
-    res.json(todos);
+app.get('/api/books', function(req, res) {
+    res.json(books);
 });
 
 // что будет отдаваться если запрашивается с айди
-app.get('/api/todos/:id', function(req, res) {
-    var todo = todos.filter(function(todo) { return todo.id == req.params.id; })[0];
+app.get('/api/books/:id', function(req, res) {
+    var book = books.filter(function(book) { return book.id == req.params.id; })[0];
 
-    if(!todo) {
+    if(!book) {
         res.statusCode = 404;
-        return res.json({ msg: "todo does not exist" });
+        return res.json({ msg: "book does not exist" });
     }
 
-    res.json(todo);
+    res.json(book);
 });
 
 // ПОСТ - это создание новых моделей на сервере
 // новая - если нет айди, это по умолчанию
-app.post('/api/todos', function(req, res) {
+app.post('/api/books', function(req, res) {
     if(!req.body.title || !req.body.date) {
         res.statusCode = 400;
         return res.json({ msg: "Invalid params sent" });
     }
 
-    var newtodo = {
+    var newbook = {
         title: req.body.title,
-        done: req.body.done,
-        date: req.body.date,
+        author: req.body.author,
+        year: req.body.year,
+        description: req.body.description,
+        genre: req.body.genre,
         id: nextId++,
     };
 
-    todos.push(newtodo);
+    books.push(newbook);
 
-    res.json(newtodo);
+    res.json(newbook);
 });
 
 // ПУТ - это изменение уже существующих на сервере моделей
-app.put('/api/todos/:id', function(req, res) {
+app.put('/api/books/:id', function(req, res) {
     if(!req.body.title || !req.body.date) {
         res.statusCode = 400;
         return res.json({ msg: "Invalid params sent" });
     }
 
-    var todo = todos.filter(function(todo) { return todo.id == req.params.id; })[0];
+    var book = books.filter(function(book) { return book.id == req.params.id; })[0];
 
-    if(!todo) {
+    if(!book) {
         res.statusCode = 404;
-        return res.json({ msg: "todo does not exist" });
+        return res.json({ msg: "book does not exist" });
     }
 
-    todo.title = req.body.title;
-    todo.done = req.body.done;
-    todo.date = req.body.date;
-    todo.id = req.body.id;
+    book.title = req.body.title;
+    book.author = req.body.done;
+    book.year = req.body.date;
+    book.description = req.body.description;
+    book.genre = req.body.date;
+    book.id = req.body.id;
 
-    res.json(todo);
+    res.json(book);
 });
 
 // Соответственно - удаление
-app.delete('/api/todos/:id', function(req, res) {
-    var todo = todos.filter(function(todo) { return todo.id == req.params.id; })[0];
+app.delete('/api/books/:id', function(req, res) {
+    var book = books.filter(function(book) { return book.id == req.params.id; })[0];
 
-    if(!todo) {
+    if(!book) {
         res.statusCode = 404;
-        return res.json({ msg: "todo does not exist" });
+        return res.json({ msg: "book does not exist" });
     }
 
-    todos.splice(todos.indexOf(todo), 1);
+    books.splice(books.indexOf(book), 1);
 
     res.statusCode = 204;
     res.send({});

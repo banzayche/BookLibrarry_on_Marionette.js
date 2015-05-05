@@ -12,9 +12,24 @@ var routerController = myLibrarryApp.module('routerController', function(routerC
 
 	// Добавим контроллер
 	routerController.GeneralController = Marionette.Controller.extend({
+		initialize: function(){
+			MyLibrarryApp.GeneralCollection = new MyLibrarryApp.modelCollection.CollectionBook();
+			this.collection = MyLibrarryApp.GeneralCollection;
+		},
 		RouterProcessing: function(route){
 			console.log('I have working with '+route+' route');
-		}
+			this.showMain();
+		},
+
+		showMain: function(){
+			var mainView = new MyLibrarryApp.listViews.BookListView({
+				collection: this.collection,
+			});
+			console.log(this.collection);
+			MyLibrarryApp.root.showChildView('main', mainView);
+
+		},
+
 	});
 	
 	$( document ).ready(function() {
@@ -25,9 +40,8 @@ var routerController = myLibrarryApp.module('routerController', function(routerC
 	});
 
 	MyLibrarryApp.on('start', function(){
-		console.log('book-application has been started');
-		MyLibrarryApp.GeneralCollection = new MyLibrarryApp.modelCollection.CollectionBook();
+		console.log('book-application has been started');		
 		MyLibrarryApp.GeneralCollection.fetch();
-		console.log(MyLibrarryApp.GeneralCollection);
+		// console.log(MyLibrarryApp.GeneralCollection);
 	});
 });

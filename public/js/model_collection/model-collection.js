@@ -15,7 +15,7 @@ var modelCollection = myLibrarryApp.module('modelCollection', function(modelColl
 		},
 
 		// это url адресс запроса для модели
-		urlRoot: '/api/todos'
+		urlRoot: '/api/books'
 	});
 	// коллекция для наших моделей
 	modelCollection.CollectionBook = Backbone.Collection.extend({
@@ -23,6 +23,6 @@ var modelCollection = myLibrarryApp.module('modelCollection', function(modelColl
 		model: modelCollection.Book,
 
 		// это url адресс запроса для коллекции
-		url: '/api/todos'
+		url: '/api/books'
 	});
 });
