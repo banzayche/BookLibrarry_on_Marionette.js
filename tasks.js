@@ -22,7 +22,7 @@ exports.taskList = function() {
             year: 2001,
             genre: "mystery",
             description: "none description",
-            id: 3
+            id: 2
         },
         {
             title: "Anatomic Atlas. Or how hard to be a toad.",
@@ -30,7 +30,7 @@ exports.taskList = function() {
             year: 2008,
             genre: "story",
             description: "none description",
-            id: 4
+            id: 3
         },
         {
             title: "Fahrenheit 451",
@@ -38,7 +38,7 @@ exports.taskList = function() {
             year: 1953,
             genre: "science fiction",
             description: "none description",
-            id: 5
+            id: 4
         },
         {
             title: "Fight Club",
@@ -46,7 +46,7 @@ exports.taskList = function() {
             year: 1996,
             genre: "story",
             description: "none description",
-            id: 6
+            id: 5
         },
         {
             title: "Lullaby",
@@ -54,7 +54,7 @@ exports.taskList = function() {
             year: 2002,
             genre: "mystery-detective",
             description: "none description",
-            id: 7
+            id: 6
         },
         {
             title: "Thanatonauts",
@@ -62,7 +62,7 @@ exports.taskList = function() {
             year: 1994,
             genre: "fantastic",
             description: "none description",
-            id: 8
+            id: 7
         },
     ];
     return books;

@@ -31,6 +31,14 @@ var listViews = myLibrarryApp.module('listViews', function(listViews, MyLibrarry
 		},
 	});
 
+	// View for empty collection
+	listViews.NoChildView = Backbone.Marionette.ItemView.extend({
+		tagName: 'tr',
+		id: 'empty-collection',
+		// указали шаблон
+		template: '#noChildView-template',
+	});
+
 	// Это наше представление коллекции моделей
 	listViews.BookListView = Backbone.Marionette.CompositeView.extend({
 		tagName: 'table',
@@ -44,6 +52,7 @@ var listViews = myLibrarryApp.module('listViews', function(listViews, MyLibrarry
 		initialize: function(){
 			// Слушаем filterState и если модель изменится то проверяем, правильно ли отображен инпут
 			this.listenTo(MyLibrarryApp.request('filterState'), 'change', this.render, this);
+			console.log(MyLibrarryApp.GeneralCollection);
 		},
 
 		ui: {
@@ -77,11 +86,6 @@ var listViews = myLibrarryApp.module('listViews', function(listViews, MyLibrarry
 		}
 	});
 
-	// View for empty collection
-	listViews.NoChildView = Backbone.Marionette.ItemView.extend({
-		// указали шаблон
-		template: '#noChildView-template',
-	});
 
 	// control panel view
 	listViews.ControlForList = Backbone.Marionette.ItemView.extend({
@@ -97,12 +101,6 @@ var listViews = myLibrarryApp.module('listViews', function(listViews, MyLibrarry
 			'click @ui.createBook' : 'goCreateBook',
 			'click @ui.genreSpan' : 'setFilterAttribute'
 		},
-		// collectionEvents: {
-		// 	"destroy": "showFilter"
-		// },
-		// test: function(){
-		// 	alert('test');
-		// },
 
 		onShow: function(){
 			this.showFilter();

@@ -18,9 +18,13 @@ html, body{
 	padding:10px 20px;
 	display: none; 
 }
+
+tbody td{
+	  line-height: 30px !important;
+}
 tbody>tr:hover{
 	transition: background-color .5s;
-	background-color: rgba(4,4,4,.3);
+	background-color: rgba(39,196,39,.3);
 	cursor: pointer;
 }
 thead th{

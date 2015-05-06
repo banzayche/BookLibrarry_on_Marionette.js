@@ -13,6 +13,7 @@ books = books.taskList();
 
 // переменная в которой происходит подсчет айди
 var nextId = books.length;
+
 app.use(express.static(__dirname + '/public'));
 app.use(bodyParser.json());
 app.use(function (req, res, next) {
@@ -56,7 +57,6 @@ app.post('/api/books', function(req, res) {
     };
 
     books.push(newBook);
-
     res.json(newBook);
 });
 

@@ -40,7 +40,7 @@ var routerController = myLibrarryApp.module('routerController', function(routerC
 				// Если модель новая id не будет - поля пустые
 				// иначе в полях отобразятся значения модели
 				MyLibrarryApp.root.showChildView('main', book);	
-			}, 100);				
+			}, 0);				
 		},
 		detailBook: function(id){
 			var newModel = MyLibrarryApp.GeneralCollection.get(id);
@@ -56,9 +56,7 @@ var routerController = myLibrarryApp.module('routerController', function(routerC
 			switch (route) {
 				case "home":
 					var there = this;
-					_.delay(function(){
-						there.showMain();
-					}, 100);
+					there.showMain();
 					break;
 				default:
 			};			

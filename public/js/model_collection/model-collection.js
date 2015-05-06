@@ -40,7 +40,7 @@ var modelCollection = myLibrarryApp.module('modelCollection', function(modelColl
 		// на основе какого конструктора будут строиться модели коллекции
 		model: modelCollection.Book,
 		
-		sortAttribute: 'id',
+		sortAttribute: 'title',
 		goSort: function(sortAttribute){
 			this.sortAttribute = sortAttribute;
 			this.sort();
