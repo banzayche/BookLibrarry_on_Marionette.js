@@ -22,6 +22,16 @@ var modelCollection = myLibrarryApp.module('modelCollection', function(modelColl
 		    "id" : undefined
 		},
 
+		accordance: function(filterVal){
+			// если роут ровняется all - то вернет "правда" для всех моделей
+			if(this.get('genre') === filterVal){
+				return true;
+			} else if(filterVal === 'all'){
+				return true;
+			} else {
+				return false;
+			}
+		},
 		// это url адресс запроса для модели
 		urlRoot: '/api/books'
 	});
@@ -38,7 +48,7 @@ var modelCollection = myLibrarryApp.module('modelCollection', function(modelColl
 		comparator: function(model){
 			return model.get(this.sortAttribute);
 		},
-		
+
 		// это url адресс запроса для коллекции
 		url: '/api/books'
 	});

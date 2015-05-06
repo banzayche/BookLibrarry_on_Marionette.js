@@ -31,4 +31,5 @@ window.myLibrarryApp = new MyLibrarryApp();
 	myLibrarryApp.reqres.setHandler('filterState', function(){
 	    return filterState;
 	});
+	
 })();

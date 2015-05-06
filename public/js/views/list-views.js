@@ -40,6 +40,12 @@ var listViews = myLibrarryApp.module('listViews', function(listViews, MyLibrarry
 		childView:  listViews.BookItemView,
 		// представление для пустой коллекции
 		emptyView: listViews.NoChildView,
+
+		initialize: function(){
+			// Слушаем filterState и если модель изменится то проверяем, правильно ли отображен инпут
+			this.listenTo(MyLibrarryApp.request('filterState'), 'change', this.render, this);
+		},
+
 		ui: {
 			createBook : '#createBook',
 			goSort : '.go-sort'
@@ -48,12 +54,23 @@ var listViews = myLibrarryApp.module('listViews', function(listViews, MyLibrarry
 			'click @ui.createBook' : "goCreateBook",
 			'click @ui.goSort' : "sortOperation",
 		},
-		// ul: {
-		// 	newBook : '#create-book'
-		// },
-		// events: {
-		// 	'click @ui.createBook' : 'goCreateBook'
-		// },
+
+		// -------------------------------------------------------------
+		// изменяем стандартную функцию прорисовки моделей из коллекции
+		addChild: function(childModel){
+			var newFilter = MyLibrarryApp.request('filterState').get('filter');
+			// если метод соответствия модели для данного роута вернет "правда" то она рисуется
+			if(childModel.accordance(newFilter))	{
+				// стандартный метод прорисовки моделей
+				Backbone.Marionette.CompositeView.prototype.addChild.apply(this, arguments);
+			}
+		},
+		// -------------------------------------------------------------
+
+		filterStart: function(){
+			alert(myLibrarryApp.request('filterState').get('filter'));
+		},
+
 		sortOperation: function(e){
 			var sortAttribute = $(e.target).html().toLowerCase()
 			this.collection.goSort(sortAttribute);
@@ -80,14 +97,17 @@ var listViews = myLibrarryApp.module('listViews', function(listViews, MyLibrarry
 			'click @ui.createBook' : 'goCreateBook',
 			'click @ui.genreSpan' : 'setFilterAttribute'
 		},
+		// collectionEvents: {
+		// 	"destroy": "showFilter"
+		// },
+		// test: function(){
+		// 	alert('test');
+		// },
 
 		onShow: function(){
 			this.showFilter();
 		},
 		showFilter: function(){
-			// var self= this;
-			// var attrsValue = _.pluck(self.collection.toJSON(), 'genre');
-			// console.log(attrsValue);
 			var self = this;
 			var pluckOBJ = _.pluck(self.collection.toJSON(), 'genre');
 			var filter = _.uniq(pluckOBJ);
@@ -95,6 +115,11 @@ var listViews = myLibrarryApp.module('listViews', function(listViews, MyLibrarry
 			for(var i = 0; i<filter.length; i++){
 				self.ui.genreContainer.append('<li><a class="filter-genre">'+filter[i]+'</a></li>');
 			}
+		},
+		// функция смены атрибута фильтрации, у нашей вспомогательной модели
+		setFilterAttribute: function(e){
+			var attrFilter = $(e.target).html();
+			myLibrarryApp.request('filterState').set("filter", attrFilter);
 		},
 		goCreateBook: function(){
 			Backbone.history.navigate('book/create', {trigger:true, replace: true });

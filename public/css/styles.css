@@ -8,7 +8,7 @@ html, body{
 }
 .ovf-a{
 	overflow: auto;
-	min-height: 200px;
+	margin-bottom: 20px;
 }
 .error{
 	color: white;
@@ -34,7 +34,11 @@ thead .go-sort:hover{
 	cursor: pointer;
 }
 .choice-category{
-	margin: 2px 20px; 
+	margin: 2px 20px;
+	width: 164px;
+}
+.choice-category>ul{
+	position: relative;
 }
 #filter-atributes-container a{
 	cursor: pointer;
