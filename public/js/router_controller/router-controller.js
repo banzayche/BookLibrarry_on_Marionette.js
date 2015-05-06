@@ -23,32 +23,35 @@ var routerController = myLibrarryApp.module('routerController', function(routerC
 					
 		// },
 		
-		editBook: function(id){			
-			_.delay(function(){
-				if( id == null ){
-					var newModel = new MyLibrarryApp.modelCollection.Book({	id: id });
-				} else{
-					var newModel = MyLibrarryApp.GeneralCollection.get(id);
-				}
-				var coll = MyLibrarryApp.GeneralCollection;
-				console.log(coll);
-				console.log(id);
-				console.log(newModel);
+		editBook: function(id){
+			// Если модель новая id не будет - поля пустые
+			// иначе в полях отобразятся значения модели			
+			if( id == null ){
+				var newModel = new MyLibrarryApp.modelCollection.Book({	id: id });
 				var book = new MyLibrarryApp.staticViews.EditBookView({	
 					model: newModel,
 				});
-				// Если модель новая id не будет - поля пустые
-				// иначе в полях отобразятся значения модели
-				MyLibrarryApp.root.showChildView('main', book);	
-			}, 0);				
+				MyLibrarryApp.root.showChildView('main', book);
+			} else{
+				var activeModel = new MyLibrarryApp.modelCollection.Book({ id: id });
+				// создаем новую вьюху
+				var activeView = new MyLibrarryApp.staticViews.DetailBookView({
+					model: activeModel
+				});
+				activeModel.fetch().done(function(){
+					MyLibrarryApp.root.showChildView('main', activeView);
+				});
+			}										
 		},
 		detailBook: function(id){
-			var newModel = MyLibrarryApp.GeneralCollection.get(id);
-			console.log(newModel)
-			var book = new MyLibrarryApp.staticViews.DetailBookView({	
-					model: newModel,
-				});
-			MyLibrarryApp.root.showChildView('main', book);	
+			var activeModel = new MyLibrarryApp.modelCollection.Book({ id: id });
+			// создаем новую вьюху
+			var activeView = new MyLibrarryApp.staticViews.DetailBookView({
+				model: activeModel
+			});
+			activeModel.fetch().done(function(){
+				MyLibrarryApp.root.showChildView('main', activeView);
+			});			
 		},
 
 		RouterProcessing: function(route){
