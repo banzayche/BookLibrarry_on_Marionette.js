@@ -35,7 +35,7 @@ var routerController = myLibrarryApp.module('routerController', function(routerC
 			} else{
 				var activeModel = new MyLibrarryApp.modelCollection.Book({ id: id });
 				// создаем новую вьюху
-				var activeView = new MyLibrarryApp.staticViews.DetailBookView({
+				var activeView = new MyLibrarryApp.staticViews.EditBookView({
 					model: activeModel
 				});
 				activeModel.fetch().done(function(){
@@ -85,7 +85,5 @@ var routerController = myLibrarryApp.module('routerController', function(routerC
 
 	MyLibrarryApp.on('start', function(){
 		console.log('book-application has been started');		
-		
-		// console.log(MyLibrarryApp.GeneralCollection);
 	});
 });
