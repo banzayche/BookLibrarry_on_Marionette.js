@@ -40,7 +40,7 @@ var routerController = myLibrarryApp.module('routerController', function(routerC
 				// Если модель новая id не будет - поля пустые
 				// иначе в полях отобразятся значения модели
 				MyLibrarryApp.root.showChildView('main', book);	
-			}, 10);				
+			}, 100);				
 		},
 		detailBook: function(id){
 			var newModel = MyLibrarryApp.GeneralCollection.get(id);
@@ -55,7 +55,10 @@ var routerController = myLibrarryApp.module('routerController', function(routerC
 			console.log('I have working with '+route+' route');
 			switch (route) {
 				case "home":
-					this.showMain();
+					var there = this;
+					_.delay(function(){
+						there.showMain();
+					}, 100);
 					break;
 				default:
 			};			
@@ -63,10 +66,10 @@ var routerController = myLibrarryApp.module('routerController', function(routerC
 
 		showMain: function(){
 			
-			var mainView = new MyLibrarryApp.listViews.BookListView({
+			var mainView = new MyLibrarryApp.listViews.mainLayoutView({
 				collection: MyLibrarryApp.GeneralCollection,
 			});
-			console.log(MyLibrarryApp.GeneralCollection);
+
 			MyLibrarryApp.root.showChildView('main', mainView);
 		},
 

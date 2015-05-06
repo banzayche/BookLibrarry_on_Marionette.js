@@ -6,6 +6,10 @@ html, body{
 .edit_delit{
 	width: 150px;
 }
+.ovf-a{
+	overflow: auto;
+	min-height: 200px;
+}
 .error{
 	color: white;
 	background-color: red;
@@ -17,4 +21,21 @@ html, body{
 tbody>tr:hover{
 	transition: background-color .5s;
 	background-color: rgba(4,4,4,.3);
+	cursor: pointer;
+}
+thead th{
+	background-color: rgb(51, 122, 183);
+  	color: white;
+  	font-size: 20px;
+}
+thead .go-sort:hover{
+	transition: background-color .5s;
+	background-color: rgba(39,196,39,.7);
+	cursor: pointer;
+}
+.choice-category{
+	margin: 2px 20px; 
+}
+#filter-atributes-container a{
+	cursor: pointer;
 }

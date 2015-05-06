@@ -11,9 +11,9 @@
 	</head>
 	<body>
 		<div id="general-template" class="container">
-			<h1 class="text-center">Hi everyone! It's just beginning :)</h1>
+			<h1 class="text-center">Hi everyone! This app help you remember all interesting books that have you ever read.</h1>
 			<section id="header"></section>
-			<section id="main" class="table-responsive"></section>
+			<section id="main"></section>
 			<section id="footer"></section>
 		</div>
 	</body>
@@ -32,25 +32,43 @@
 		<!-- /single book model -->
 
 		<!-- list of Book models -->
-		<script type="text/template" id="book-list-template">
-		    <thead>
-		        <tr>
-		            <th>Title</th>
-		            <th>Author</th>
-		            <th>Genre</th>
-		            <th>Year</th>
-		            <th>Edit/Delete</th>
-		        </tr>
-		    </thead>
-		    <tfoot>
-		    	<tr>
-		    		<td colspan="5">
-		    			<button class="btn btn-success" id="createBook">Create new Book</button>
-		    		</td>
-		    	</tr>
-		    </tfoot>
+		<script type="text/template" id="book-list-layout-template">
+			<table class="table" id="list-region">
+
+			</table>
+		    <div id="control-region">
+		    	
+		    </div>
 		</script>
 		<!-- /list of Book models -->
+				
+		<!-- List region -->
+		<script type="text/template" id="list-region-template">
+			<thead>
+		        <tr>
+		            <th class="go-sort">Title</th>
+		            <th class="go-sort">Author</th>
+		            <th class="go-sort">Genre</th>
+		            <th class="go-sort">Year</th>
+		            <th>Edit / Delete</th>
+		        </tr>
+		    </thead>
+		</script>		    
+		<!-- /List region -->
+
+		<!-- control Region view -->
+		<script type="text/template" id="control-list-region-template">
+		    <button class="btn btn-success pull-left" id="createBook">Create new Book</button>
+			<div class="btn-group pull-left choice-category">
+			  	<button class="btn btn-default btn-sm dropdown-toggle" type="button" data-toggle="dropdown">
+					Filtering books by genre <span class="caret"></span>
+			 	</button>
+			  	<ul class="dropdown-menu" id="filter-atributes-container">
+			    	<li><a class="filter-genre">Show All Books</a></li>
+			  	</ul>
+			</div>
+		</script>
+		<!-- /control Regin view -->
 
 		<!-- no-child-view -->
 		<script type="text/template" id="noChildView-template">

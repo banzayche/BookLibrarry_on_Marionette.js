@@ -29,7 +29,16 @@ var modelCollection = myLibrarryApp.module('modelCollection', function(modelColl
 	modelCollection.CollectionBook = Backbone.Collection.extend({
 		// на основе какого конструктора будут строиться модели коллекции
 		model: modelCollection.Book,
-
+		
+		sortAttribute: 'id',
+		goSort: function(sortAttribute){
+			this.sortAttribute = sortAttribute;
+			this.sort();
+		},
+		comparator: function(model){
+			return model.get(this.sortAttribute);
+		},
+		
 		// это url адресс запроса для коллекции
 		url: '/api/books'
 	});

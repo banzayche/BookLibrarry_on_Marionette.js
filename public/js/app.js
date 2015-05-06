@@ -19,3 +19,16 @@ var MyLibrarryApp = Marionette.Application.extend({
 });
 
 window.myLibrarryApp = new MyLibrarryApp();
+
+(function(){
+	// модель со значением фильтрации
+	var filterState = new Backbone.Model({
+	  	filter: 'all',
+		generalInput: true
+	});
+
+	// обработчик запроса 
+	myLibrarryApp.reqres.setHandler('filterState', function(){
+	    return filterState;
+	});
+})();
