@@ -19,6 +19,7 @@ var staticViews = myLibrarryApp.module('staticViews', function(staticViews, MyLi
 
 	// Для подробного описания книги
 	staticViews.DetailBookView = Backbone.Marionette.ItemView.extend({
+		className: 'detail-book',
 		// указываем уже существующий в дом, элемент
 		template: '#book-detail-template',
 		model: MyLibrarryApp.modelCollection.Book,

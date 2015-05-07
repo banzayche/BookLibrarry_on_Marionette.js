@@ -17,7 +17,7 @@ var modelCollection = myLibrarryApp.module('modelCollection', function(modelColl
 		    "title" : undefined,
 		    "author" : undefined,
 		    "year" : undefined,
-		    "description" : undefined,
+		    "description" : 'None description.',
 		    "genre" : undefined,
 		    "id" : undefined
 		},

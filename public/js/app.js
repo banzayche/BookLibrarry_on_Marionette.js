@@ -9,8 +9,12 @@ var MyLibrarryApp = Marionette.Application.extend({
 	// Следующий метод будет выполняться автоматически при старте приложения.
 	onStart: function(){		
 		this.setRootLayout();
-		// стартуем бекбон хистори, для работы роутов
-		Backbone.history.start({pushState: true});
+		
+		this.GeneralCollection = new this.modelCollection.CollectionBook();
+		this.GeneralCollection.fetch().done(function(){
+			// стартуем бекбон хистори, для работы роутов
+			Backbone.history.start({pushState: true});
+		});
 	},
 	setRootLayout: function(){		
 		// это будет главная вьюха нашего приложения

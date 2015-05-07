@@ -19,6 +19,36 @@ html, body{
 	display: none; 
 }
 
+#general-template .container{
+	background: rgba(224,224,224,.4);
+  	padding: 20px;
+  	border-radius: 7px; 
+}
+.detail-book p{
+	padding: 40px 0; 
+}
+
+.no-book-bg{
+	background-image: url('http://tut-interesno.org/wp-content/uploads/2012/12/Dairy-Nets-Soda-Angle.jpg');
+	height: 500px;
+	background-position: center;
+	color: white;
+	text-shadow: 1px 1px 5px black;  
+}
+.no-book-bg h2{
+	background-color: rgba(235,235,235,.9);
+  	padding: 10px 0;
+  	border-radius: 5px;
+}
+.no-book-bg p{
+	  display: block;
+	  background-color: rgba(224, 219, 219, 0.82);
+	  padding: 20px;
+	  height: 91%;
+	  border-radius: 5px;
+}
+
+
 tbody td{
 	  line-height: 30px !important;
 }

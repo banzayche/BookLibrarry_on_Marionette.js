@@ -5,8 +5,8 @@ var routerController = myLibrarryApp.module('routerController', function(routerC
 	// Добавим роутер
 	routerController.GeneralRouter = Backbone.Marionette.AppRouter.extend({
 		initialize: function(){
-			MyLibrarryApp.GeneralCollection = new MyLibrarryApp.modelCollection.CollectionBook();
-			MyLibrarryApp.GeneralCollection.fetch();
+			// MyLibrarryApp.GeneralCollection = new MyLibrarryApp.modelCollection.CollectionBook();
+			// MyLibrarryApp.GeneralCollection.fetch();
 		},
 		// будем обрабатывать все роуты и лишь потом вычислять, какие действия предпринимать
 		appRoutes: {			
@@ -57,6 +57,7 @@ var routerController = myLibrarryApp.module('routerController', function(routerC
 		RouterProcessing: function(route){
 			console.log('I have working with '+route+' route');
 			switch (route) {
+				case null:
 				case "home":
 					var there = this;
 					there.showMain();
