@@ -9,13 +9,10 @@
 		<link rel="stylesheet" type="text/css" href="/bower_components/bootstrap/dist/css/bootstrap.css">
 		<!-- /bootstrap -->
 	</head>
-	<body>
-		<div id="general-template">
-			<h1 class="text-center">Hi everyone! This app help you remember all interesting books that have you ever read.</h1>
-			<section id="header"></section>
-			<section id="main"  class="container"></section>
-			<section id="footer"></section>
-		</div>
+	<body id="general-template">
+		<section id="header"></section>
+		<section id="main"  class="container"></section>
+		<section id="footer"></section>
 	</body>
 	<!-- templates -->
 		<!-- single book model -->
@@ -126,6 +123,19 @@
 			<botton class="btn btn-danger col-sm-4 col-md-4 col-xs-12 pull-right" id="cancel">Cancel</botton>
 		</script>
 		<!-- /edit model -->
+
+		<!-- header -->
+		<script type="text/template" id="header-template">
+			<a href="/home" class="h1"><span class="glyphicon glyphicon-book"></span> GoodBook</a>			
+		</script>		    
+		<!-- /header -->
+
+		<!-- footer -->
+		<script type="text/template" id="footer-template">
+			<p class="text-center"><span class="glyphicon glyphicon-hand-right"></span>&nbsp;&nbsp;&nbsp;Hi everyone! This app help you remember all interesting books that have you ever read.</p>
+			<span>&copy;&nbsp;All rights reserved!</span>
+		</script>
+		<!-- /footer -->
 	<!-- /templates -->
 	
 	<!-- marionette -->	

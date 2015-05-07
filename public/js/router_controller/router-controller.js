@@ -41,7 +41,8 @@ var routerController = myLibrarryApp.module('routerController', function(routerC
 				activeModel.fetch().done(function(){
 					MyLibrarryApp.root.showChildView('main', activeView);
 				});
-			}										
+			}
+			this.showFooter_Header();										
 		},
 		detailBook: function(id){
 			var activeModel = new MyLibrarryApp.modelCollection.Book({ id: id });
@@ -51,7 +52,8 @@ var routerController = myLibrarryApp.module('routerController', function(routerC
 			});
 			activeModel.fetch().done(function(){
 				MyLibrarryApp.root.showChildView('main', activeView);
-			});			
+			});
+			this.showFooter_Header();			
 		},
 
 		RouterProcessing: function(route){
@@ -61,9 +63,22 @@ var routerController = myLibrarryApp.module('routerController', function(routerC
 				case "home":
 					var there = this;
 					there.showMain();
+					there.showFooter_Header();
 					break;
 				default:
 			};			
+		},
+
+		showFooter_Header: function(){
+			var header = new MyLibrarryApp.staticViews.GeneralHeaderView({
+				collection: MyLibrarryApp.GeneralCollection,
+			});
+			var footer = new MyLibrarryApp.staticViews.GeneralFooterView({
+				collection: MyLibrarryApp.GeneralCollection,
+			});
+
+			MyLibrarryApp.root.showChildView('header', header);
+			MyLibrarryApp.root.showChildView('footer', footer);
 		},
 
 		showMain: function(){

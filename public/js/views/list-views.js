@@ -5,6 +5,7 @@ var listViews = myLibrarryApp.module('listViews', function(listViews, MyLibrarry
 	// Это наше представление одной модели
 	listViews.BookItemView = Backbone.Marionette.ItemView.extend({
 		tagName: 'tr',
+		className: 'book-tr',
 		template: '#book-template',
 		ui: {
 			destroy : '#delete',

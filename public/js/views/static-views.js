@@ -17,6 +17,13 @@ var staticViews = myLibrarryApp.module('staticViews', function(staticViews, MyLi
 		}
 	});
 
+	// Для header
+	staticViews.GeneralHeaderView = Backbone.Marionette.ItemView.extend({
+		className: 'container header-book',
+		// указываем уже существующий в дом, элемент
+		template: '#header-template',
+	});
+
 	// Для подробного описания книги
 	staticViews.DetailBookView = Backbone.Marionette.ItemView.extend({
 		className: 'detail-book',
@@ -92,5 +99,12 @@ var staticViews = myLibrarryApp.module('staticViews', function(staticViews, MyLi
 		goCancel: function(){
 			Backbone.history.navigate('home', {trigger:true, replace: true });
 		}
+	});
+	
+	// Для footer
+	staticViews.GeneralFooterView = Backbone.Marionette.ItemView.extend({
+		className: 'container footer-book',
+		// указываем уже существующий в дом, элемент
+		template: '#footer-template',
 	});
 });
