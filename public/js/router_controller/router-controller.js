@@ -4,55 +4,67 @@
 var routerController = myLibrarryApp.module('routerController', function(routerController, MyLibrarryApp, Backbone){
 	// Добавим роутер
 	routerController.GeneralRouter = Backbone.Marionette.AppRouter.extend({
-		initialize: function(){
-			// MyLibrarryApp.GeneralCollection = new MyLibrarryApp.modelCollection.CollectionBook();
-			// MyLibrarryApp.GeneralCollection.fetch();
-		},
+
 		// будем обрабатывать все роуты и лишь потом вычислять, какие действия предпринимать
 		appRoutes: {			
-			'book/:id/edit': 'editBook',
-			'book/:id/detail': 'detailBook',
-			'book/create': 'editBook',
+			'book/:id/edit': 'control404_edit',
+			'book/:id/detail': 'control404_detail',
+			'book/create': 'control404_edit',
 			'*route' : 'RouterProcessing',			
 		},	
 	});
 
 	// Добавим контроллер
 	routerController.GeneralController = Marionette.Controller.extend({
-		// initialize: function(){
-					
-		// },
+
+		control404_edit: function(id){this.control404_part2(id,'edit')},
+		control404_detail: function(id){this.control404_part2(id,'detail')},
 		
-		editBook: function(id){
+		control404_part2: function(id, direction){
+			// создадим модель
+			var activeModel = new MyLibrarryApp.modelCollection.Book({ id: id });
+			// смотрим на ответ сервера
+			// если положительный - рисуем как положено
+			// если отрицательный - переадресация на 404 - page
+			var there = this;
+			activeModel.fetch({
+				success: function(){
+					if(direction === 'edit'){
+						there.editBook(id, activeModel);
+					} else {
+						there.detailBook(id, activeModel);
+					}
+				},
+				error: function(one, responseStatus, three){
+					Backbone.history.navigate('page-404', {trigger:true, replace: true });
+				},
+			});
+		},
+		
+		editBook: function(id, activeModel){
 			// Если модель новая id не будет - поля пустые
 			// иначе в полях отобразятся значения модели			
-			if( id == null ){
-				var newModel = new MyLibrarryApp.modelCollection.Book({	id: id });
+			if( id == null){
 				var book = new MyLibrarryApp.staticViews.EditBookView({	
-					model: newModel,
+					model: activeModel,
 				});
 				MyLibrarryApp.root.showChildView('main', book);
 			} else{
-				var activeModel = new MyLibrarryApp.modelCollection.Book({ id: id });
 				// создаем новую вьюху
 				var activeView = new MyLibrarryApp.staticViews.EditBookView({
 					model: activeModel
 				});
-				activeModel.fetch().done(function(){
-					MyLibrarryApp.root.showChildView('main', activeView);
-				});
+				MyLibrarryApp.root.showChildView('main', activeView);
+
 			}
 			this.showFooter_Header();										
 		},
-		detailBook: function(id){
-			var activeModel = new MyLibrarryApp.modelCollection.Book({ id: id });
+		detailBook: function(id, activeModel){
 			// создаем новую вьюху
 			var activeView = new MyLibrarryApp.staticViews.DetailBookView({
 				model: activeModel
 			});
-			activeModel.fetch().done(function(){
-				MyLibrarryApp.root.showChildView('main', activeView);
-			});
+			MyLibrarryApp.root.showChildView('main', activeView);
 			this.showFooter_Header();			
 		},
 

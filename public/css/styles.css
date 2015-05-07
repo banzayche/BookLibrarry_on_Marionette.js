@@ -23,6 +23,9 @@ html, body{
 	display: none; 
 }
 
+
+
+/*general*/
 #general-template{
 	min-height: 100% !important;
 	position: relative;
@@ -42,7 +45,7 @@ html, body{
 
 
 
-
+/*header*/
 #header{
 	background: rgba(255, 255, 255, 0.71);
 	margin-bottom: 20px;
@@ -66,10 +69,8 @@ html, body{
 }
 
 
-#main{
-	margin-bottom: 100px;
-}
 
+/*footer*/
 #footer{
 	position: absolute;
 	bottom: 0;
@@ -83,9 +84,14 @@ html, body{
 }
 
 
+/*main*/
+#main{
+	margin-bottom: 100px;
+}
 .page-404 p{
 	padding: 20px 0 10px 0;
 }
+
 .detail-book p{
 	padding: 40px 0; 
 }
@@ -132,6 +138,7 @@ thead .go-sort:hover{
 	background: rgb(85, 194, 11);
 	cursor: pointer;
 }
+
 .choice-category{
 	margin: 2px 20px;
 	width: 164px;
