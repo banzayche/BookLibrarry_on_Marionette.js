@@ -97,22 +97,22 @@ html, body{
 }
 
 .no-book-bg{
-	background-image: url('../img/no-book-bg.jpg');
+/*	background-image: url('../img/no-book-bg.jpg');
 	height: 500px;
-	background-position: center;
+	background-position: center;*/
 	color: white;
 	text-shadow: 1px 1px 5px black;  
 }
 .no-book-bg h2{
-	background-color: rgba(235,235,235,.9);
+/*	background-color: rgba(235,235,235,.9);*/
   	padding: 10px 0;
   	border-radius: 5px;
 }
 .no-book-bg p{
 	  display: block;
-	  background-color: rgba(224, 219, 219, 0.82);
+/*	  background-color: rgba(224, 219, 219, 0.82);*/
 	  padding: 20px;
-	  height: 91%;
+	  height: 85%;
 	  border-radius: 5px;
 }
 
@@ -129,7 +129,7 @@ tbody>tr.book-tr:hover{
 	cursor: pointer;
 }
 thead th{
-	background-color: rgb(108, 108, 108);
+	background-color: rgba(82, 82, 82, 0.24);
   	color: white;
   	font-size: 20px;
 }
@@ -148,4 +148,36 @@ thead .go-sort:hover{
 }
 #filter-atributes-container a{
 	cursor: pointer;
+}
+
+/*tile variant*/
+#list-region{
+	overflow: auto;
+	padding: 20px 0; 
+}
+div.item-book-tile{
+	padding: 10px;
+	cursor: pointer;
+}
+div.item-book-tile:hover>div{
+	transition: background-color .5s;
+	background-color: rgba(39,196,39,.3);
+}
+.item-book-tile span{
+	display: block;
+}
+.item-book-tile>div{
+	padding: 5px;
+  	background-color: rgba(200, 200, 200, 0.45);
+  	border-radius: 5px;
+}
+.item-book-tile .text-section{
+	overflow: auto;
+	height: 120px;
+}
+.item-book-tile .spec-button{
+	width: 100%;
+	margin: 5px 0;
+	background: transparent;
+  	border-color: white; 
 }

@@ -30,9 +30,9 @@
 
 		<!-- list of Book models -->
 		<script type="text/template" id="book-list-layout-template">
-			<table class="table" id="list-region">
+			<div id="list-region">
 
-			</table>
+			</div>
 		    <div id="control-region">
 		    	
 		    </div>
@@ -42,6 +42,9 @@
 		<!-- List region -->
 		<script type="text/template" id="list-region-template">
 			<thead>
+				<tr>
+		            <th colspan="5"><h3 class="text-center">Table variant.</h3></th>
+		        </tr>
 		        <tr>
 		            <th class="go-sort">Title</th>
 		            <th class="go-sort">Author</th>
@@ -62,8 +65,9 @@
 			 	</button>
 			  	<ul class="dropdown-menu" id="filter-atributes-container">
 			    	<li><a class="filter-genre">all</a></li>
-			  	</ul>
+			  	</ul>			  	
 			</div>
+			<button class="btn btn-default" id="goTile">Change view variant</button>
 		</script>
 		<!-- /control Regin view -->
 
@@ -146,11 +150,39 @@
 		</script>
 		<!-- /footer -->
 
+		
+
+
 		<!-- tile-list -->
 		<script type="text/template" id="tile-list">
-			<h3>It is work!</h3>
+			<h2 class="text-center">Tile variant.</h2>
 		</script>
 		<!-- /tile-list -->
+
+		<!-- no-child-view -->
+		<script type="text/template" id="tile-empty-collection">
+			<h2 class="text-center">Sorry, there are no books in this genre!</h2>
+			<p class="h4">Create new information of book, or select another genre.</p>
+		</script>
+		<!-- /no-child-view -->
+
+		<!-- single book model -->
+		<script type="text/template" id="tile-book-template">
+			<div class="ovf-a">
+				<div class="text-section">
+					<span class="h3 text-center"><%- title %></span>
+				</div>
+				<div class="col-sm-12 col-md-6 col-xs-12">
+					<button class="btn btn-primary spec-button" id="edit">Edit</button>
+				</div>
+				<div class="col-sm-12 col-md-6 col-xs-12">
+					<button class="btn btn-danger spec-button" id="delete">Delete</button>
+				</div>				
+			</div>
+		</script>
+		<!-- /single book model -->
+
+
 	<!-- /templates -->
 	
 	<!-- marionette -->	
@@ -166,6 +198,7 @@
 	<script type="text/javascript" src="/js/model_collection/model-collection.js"></script>
 	<script type="text/javascript" src="/js/views/static-views.js"></script>
 	<script type="text/javascript" src="/js/views/list-views.js"></script>
+	<script type="text/javascript" src="/js/views/tile-list.js"></script>
 	<script type="text/javascript" src="/js/router_controller/router-controller.js"></script>
 		
 	<!-- Стартуем приложение -->

@@ -28,7 +28,8 @@ window.myLibrarryApp = new MyLibrarryApp();
 	// модель со значением фильтрации
 	var filterState = new Backbone.Model({
 	  	filter: 'all',
-		generalInput: true
+		generalInput: true,
+		list_type:  'tile'
 	});
 
 	// обработчик запроса 

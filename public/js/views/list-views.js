@@ -51,7 +51,6 @@ var listViews = myLibrarryApp.module('listViews', function(listViews, MyLibrarry
 		emptyView: listViews.NoChildView,
 
 		initialize: function(){
-			// Слушаем filterState и если модель изменится то проверяем, правильно ли отображен инпут
 			this.listenTo(MyLibrarryApp.request('filterState'), 'change', this.render, this);
 			console.log(MyLibrarryApp.GeneralCollection);
 		},
@@ -96,11 +95,21 @@ var listViews = myLibrarryApp.module('listViews', function(listViews, MyLibrarry
 		ui: {
 			createBook : '#createBook',
 			genreContainer : '#filter-atributes-container',
-			genreSpan : '.filter-genre'
+			genreSpan : '.filter-genre',
+			tileToggle : '#goTile'
 		},
 		events: {
 			'click @ui.createBook' : 'goCreateBook',
-			'click @ui.genreSpan' : 'setFilterAttribute'
+			'click @ui.genreSpan' : 'setFilterAttribute',
+			'click @ui.tileToggle' : 'tileToggle'
+		},
+
+		tileToggle: function(){
+			if(MyLibrarryApp.request('filterState').get('list_type') === 'tile'){
+				MyLibrarryApp.request('filterState').set("list_type", 'table');
+			} else{
+				MyLibrarryApp.request('filterState').set("list_type", 'tile');
+			}			
 		},
 
 		onShow: function(){
@@ -133,16 +142,36 @@ var listViews = myLibrarryApp.module('listViews', function(listViews, MyLibrarry
 			listRegion: '#list-region',
 			controlRegion: '#control-region'
 		},
+		initialize: function(){
+			this.listenTo(MyLibrarryApp.request('filterState'), 'change:list_type', this.shoiceVariant, this);
+		},
 		onShow: function(){
-			var mainView = new MyLibrarryApp.listViews.BookListView({
-				collection: this.collection,
-			});
+			this.shoiceVariant();
+		},
+		shoiceVariant: function(){
+			// Смотрим значение атрибута нашей вспомогательной модели и рисуем в соответствии со значением 
+			if(MyLibrarryApp.request('filterState').get('list_type') === 'tile'){
+				this.tileShow();
+			} else{
+				this.tableShow();
+			}
+
 			var controlListBooks = new MyLibrarryApp.listViews.ControlForList({
 				collection: this.collection,
 			});
-			
-			this.getRegion('listRegion').show(mainView);
 			this.getRegion('controlRegion').show(controlListBooks);
+		},
+		tileShow: function(){
+			var mainView = new MyLibrarryApp.TileListViews.BookListView({
+				collection: this.collection,
+			});
+			this.getRegion('listRegion').show(mainView);		
+		},
+		tableShow: function(){
+			var mainViewNew = new MyLibrarryApp.listViews.BookListView({
+				collection: this.collection,
+			});
+			this.getRegion('listRegion').show(mainViewNew);
 		}
 	});
 });
