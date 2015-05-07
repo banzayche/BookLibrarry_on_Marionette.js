@@ -13,7 +13,7 @@ exports.taskList = function() {
             author: "Haruki Murakami",
             year: 1987,
             genre: "drama",
-            description: "It small paragraph about this book. It is a story about young people, they love and suffer!",
+            description: "It small description about this book. It is a story about young people, they love and suffer!",
             id: 1
         },
         {
@@ -21,7 +21,7 @@ exports.taskList = function() {
             author: "Lubko Deresh",
             year: 2001,
             genre: "mystery",
-            description: "none description",
+            description: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Quisque ex nisl, aliquam vel lobortis in, faucibus sit amet urna. Suspendisse quis cursus ligula, iaculis mattis tortor. Suspendisse pulvinar pulvinar sem, eu pretium diam porttitor ut. In hac habitasse platea dictumst. Praesent arcu lectus, tincidunt id enim id, bibendum lacinia nisi. Pellentesque tincidunt leo a tempus lacinia. Etiam dui elit, imperdiet sit amet placerat nec, consequat non erat. Integer fermentum diam tincidunt, placerat sapien sit amet, rutrum est. Aenean imperdiet tristique arcu vitae vulputate. Duis pharetra lectus non mollis tempus. Aenean commodo, purus nec eleifend rhoncus, leo est vehicula nibh, iaculis molestie metus mi non dui.",
             id: 2
         },
         {
@@ -29,7 +29,7 @@ exports.taskList = function() {
             author: "Artem Cheh",
             year: 2008,
             genre: "story",
-            description: "none description",
+            description: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Quisque ex nisl, aliquam vel lobortis in, faucibus sit amet urna. Suspendisse quis cursus ligula, iaculis mattis tortor. Suspendisse pulvinar pulvinar sem, eu pretium diam porttitor ut. In hac habitasse platea dictumst. Praesent arcu lectus, tincidunt id enim id, bibendum lacinia nisi. Pellentesque tincidunt leo a tempus lacinia. Etiam dui elit, imperdiet sit amet placerat nec, consequat non erat. Integer fermentum diam tincidunt, placerat sapien sit amet, rutrum est. Aenean imperdiet tristique arcu vitae vulputate. Duis pharetra lectus non mollis tempus. Aenean commodo, purus nec eleifend rhoncus, leo est vehicula nibh, iaculis molestie metus mi non dui.",
             id: 3
         },
         {
@@ -37,7 +37,7 @@ exports.taskList = function() {
             author: "Ray Bradbury",
             year: 1953,
             genre: "science fiction",
-            description: "none description",
+            description: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Quisque ex nisl, aliquam vel lobortis in, faucibus sit amet urna. Suspendisse quis cursus ligula, iaculis mattis tortor. Suspendisse pulvinar pulvinar sem, eu pretium diam porttitor ut. In hac habitasse platea dictumst. Praesent arcu lectus, tincidunt id enim id, bibendum lacinia nisi. Pellentesque tincidunt leo a tempus lacinia. Etiam dui elit, imperdiet sit amet placerat nec, consequat non erat. Integer fermentum diam tincidunt, placerat sapien sit amet, rutrum est. Aenean imperdiet tristique arcu vitae vulputate. Duis pharetra lectus non mollis tempus. Aenean commodo, purus nec eleifend rhoncus, leo est vehicula nibh, iaculis molestie metus mi non dui.",
             id: 4
         },
         {
@@ -45,7 +45,7 @@ exports.taskList = function() {
             author: "Chuck Palahniuk",
             year: 1996,
             genre: "story",
-            description: "none description",
+            description: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Quisque ex nisl, aliquam vel lobortis in, faucibus sit amet urna. Suspendisse quis cursus ligula, iaculis mattis tortor. Suspendisse pulvinar pulvinar sem, eu pretium diam porttitor ut. In hac habitasse platea dictumst. Praesent arcu lectus, tincidunt id enim id, bibendum lacinia nisi. Pellentesque tincidunt leo a tempus lacinia. Etiam dui elit, imperdiet sit amet placerat nec, consequat non erat. Integer fermentum diam tincidunt, placerat sapien sit amet, rutrum est. Aenean imperdiet tristique arcu vitae vulputate. Duis pharetra lectus non mollis tempus. Aenean commodo, purus nec eleifend rhoncus, leo est vehicula nibh, iaculis molestie metus mi non dui.",
             id: 5
         },
         {
@@ -53,7 +53,7 @@ exports.taskList = function() {
             author: "Chuck Palahniuk",
             year: 2002,
             genre: "mystery-detective",
-            description: "none description",
+            description: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Quisque ex nisl, aliquam vel lobortis in, faucibus sit amet urna. Suspendisse quis cursus ligula, iaculis mattis tortor. Suspendisse pulvinar pulvinar sem, eu pretium diam porttitor ut. In hac habitasse platea dictumst. Praesent arcu lectus, tincidunt id enim id, bibendum lacinia nisi. Pellentesque tincidunt leo a tempus lacinia. Etiam dui elit, imperdiet sit amet placerat nec, consequat non erat. Integer fermentum diam tincidunt, placerat sapien sit amet, rutrum est. Aenean imperdiet tristique arcu vitae vulputate. Duis pharetra lectus non mollis tempus. Aenean commodo, purus nec eleifend rhoncus, leo est vehicula nibh, iaculis molestie metus mi non dui.",
             id: 6
         },
         {
@@ -61,7 +61,7 @@ exports.taskList = function() {
             author: "Bernard Werber",
             year: 1994,
             genre: "fantastic",
-            description: "none description",
+            description: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Quisque ex nisl, aliquam vel lobortis in, faucibus sit amet urna. Suspendisse quis cursus ligula, iaculis mattis tortor. Suspendisse pulvinar pulvinar sem, eu pretium diam porttitor ut. In hac habitasse platea dictumst. Praesent arcu lectus, tincidunt id enim id, bibendum lacinia nisi. Pellentesque tincidunt leo a tempus lacinia. Etiam dui elit, imperdiet sit amet placerat nec, consequat non erat. Integer fermentum diam tincidunt, placerat sapien sit amet, rutrum est. Aenean imperdiet tristique arcu vitae vulputate. Duis pharetra lectus non mollis tempus. Aenean commodo, purus nec eleifend rhoncus, leo est vehicula nibh, iaculis molestie metus mi non dui.",
             id: 7
         },
     ];
