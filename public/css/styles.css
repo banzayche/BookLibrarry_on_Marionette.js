@@ -70,7 +70,6 @@ html, body{
 	margin-bottom: 100px;
 }
 
-
 #footer{
 	position: absolute;
 	bottom: 0;
@@ -84,6 +83,9 @@ html, body{
 }
 
 
+.page-404 p{
+	padding: 20px 0 10px 0;
+}
 .detail-book p{
 	padding: 40px 0; 
 }
@@ -111,6 +113,9 @@ html, body{
 
 tbody td{
 	  line-height: 30px !important;
+}
+tbody td .spec-button{
+	  border: 2px solid white !important;
 }
 tbody>tr.book-tr:hover{
 	transition: background-color .5s;

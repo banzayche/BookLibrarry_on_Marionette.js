@@ -101,6 +101,13 @@ var staticViews = myLibrarryApp.module('staticViews', function(staticViews, MyLi
 		}
 	});
 	
+	// Для 404 page
+	staticViews.NotFoundView = Backbone.Marionette.ItemView.extend({
+		className: 'page-404',
+		// указываем уже существующий в дом, элемент
+		template: '#page-404-template',
+	});
+	
 	// Для footer
 	staticViews.GeneralFooterView = Backbone.Marionette.ItemView.extend({
 		className: 'container footer-book',

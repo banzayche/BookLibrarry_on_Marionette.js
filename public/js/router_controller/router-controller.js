@@ -66,6 +66,9 @@ var routerController = myLibrarryApp.module('routerController', function(routerC
 					there.showFooter_Header();
 					break;
 				default:
+					this.show404();
+					this.showFooter_Header();
+					break;
 			};			
 		},
 
@@ -79,6 +82,14 @@ var routerController = myLibrarryApp.module('routerController', function(routerC
 
 			MyLibrarryApp.root.showChildView('header', header);
 			MyLibrarryApp.root.showChildView('footer', footer);
+		},
+
+		show404: function(){
+			var page_404 = new MyLibrarryApp.staticViews.NotFoundView({
+				collection: MyLibrarryApp.GeneralCollection,
+			});
+
+			MyLibrarryApp.root.showChildView('main', page_404);
 		},
 
 		showMain: function(){
