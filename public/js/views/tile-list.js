@@ -4,7 +4,7 @@
 var TileListViews = myLibrarryApp.module('TileListViews', function(TileListViews, MyLibrarryApp, Backbone){
 	// Это наше представление одной модели
 	TileListViews.BookItemView = Backbone.Marionette.ItemView.extend({
-		className: 'item-book-tile col-sm-3 col-md-3 col-xs-6',
+		className: 'item-book-tile col-sm-6 col-md-3 col-xs-6',
 		template: '#tile-book-template',
 		ui: {
 			destroy : '#delete',
