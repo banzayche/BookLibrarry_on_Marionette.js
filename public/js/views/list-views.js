@@ -89,27 +89,41 @@ var listViews = myLibrarryApp.module('listViews', function(listViews, MyLibrarry
 
 	// control panel view
 	listViews.ControlForList = Backbone.Marionette.ItemView.extend({
-		className: 'ovf-a',
 		// указали шаблон
 		template: '#control-list-region-template',
 		ui: {
 			createBook : '#createBook',
 			genreContainer : '#filter-atributes-container',
 			genreSpan : '.filter-genre',
-			tileToggle : '#goTile'
+			goVarianListView : '#goVariantList'
 		},
 		events: {
 			'click @ui.createBook' : 'goCreateBook',
 			'click @ui.genreSpan' : 'setFilterAttribute',
-			'click @ui.tileToggle' : 'tileToggle'
+			'click @ui.goVarianListView' : 'goVarianListView'
 		},
 
-		tileToggle: function(){
+		onRender: function(){
+			this.togleIconVariant();
+		},
+
+		goVarianListView: function(){
 			if(MyLibrarryApp.request('filterState').get('list_type') === 'tile'){
 				MyLibrarryApp.request('filterState').set("list_type", 'table');
 			} else{
 				MyLibrarryApp.request('filterState').set("list_type", 'tile');
 			}			
+		},
+
+		togleIconVariant: function(){
+			if(MyLibrarryApp.request('filterState').get('list_type') === 'tile'){
+				this.ui.goVarianListView.removeClass('glyphicon-th');
+				this.ui.goVarianListView.addClass('glyphicon-th-list');
+			} else{
+				this.ui.goVarianListView.removeClass('glyphicon-th-list');
+				this.ui.goVarianListView.addClass('glyphicon-th');
+			}
+			
 		},
 
 		onShow: function(){

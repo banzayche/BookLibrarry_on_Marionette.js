@@ -78,6 +78,7 @@ var routerController = myLibrarryApp.module('routerController', function(routerC
 					there.showFooter_Header();
 					break;
 				default:
+					Backbone.history.navigate('page-404', {trigger:false, replace: false });
 					this.show404();
 					this.showFooter_Header();
 					break;

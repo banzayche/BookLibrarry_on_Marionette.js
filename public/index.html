@@ -2,6 +2,7 @@
 <html>
 	<head>
 		<title>Marionette Book library</title>
+		<meta name="viewport" content="width=device-width">
 		<link rel="stylesheet" type="text/css" href="/css/styles.css">
 		<script type="text/javascript" src="/bower_components/jquery/dist/jquery.js"></script>
 		<!-- bootstrap -->
@@ -22,29 +23,32 @@
 			<td><%- genre %></td>
 			<td><%- year %></td>
 			<td class="edit_delit">
-				<button class="btn btn-primary col-sm-6 col-md-6 col-xs-12 spec-button" id="edit">Edit</button>
-				<button class="btn btn-danger col-sm-6 col-md-6 col-xs-12 spec-button" id="delete">Delete</button>
+				<div class="col-sm-12 col-md-6 col-xs-12">
+					<button class="btn btn-primary spec-button" id="edit">Edit</button>
+				</div>
+				<div class="col-sm-12 col-md-6 col-xs-12">
+					<button class="btn btn-danger spec-button" id="delete">Delete</button>
+				</div>
+				<!--<button class="btn btn-primary col-sm-6 col-md-6 col-xs-12 spec-button" id="edit">Edit</button>
+				<button class="btn btn-danger col-sm-6 col-md-6 col-xs-12 spec-button" id="delete">Delete</button>-->
 			</td>
 		</script>
 		<!-- /single book model -->
 
 		<!-- list of Book models -->
 		<script type="text/template" id="book-list-layout-template">
-			<div id="list-region">
-
-			</div>
-		    <div id="control-region">
+			<div id="control-region">
 		    	
 		    </div>
+			<div id="list-region">
+
+			</div>		    
 		</script>
 		<!-- /list of Book models -->
 				
 		<!-- List region -->
 		<script type="text/template" id="list-region-template">
 			<thead>
-				<tr>
-		            <th colspan="5"><h3 class="text-center">Table variant.</h3></th>
-		        </tr>
 		        <tr>
 		            <th class="go-sort">Title</th>
 		            <th class="go-sort">Author</th>
@@ -67,7 +71,7 @@
 			    	<li><a class="filter-genre">all</a></li>
 			  	</ul>			  	
 			</div>
-			<button class="btn btn-default" id="goTile">Change view variant</button>
+			<button class="btn btn-default glyphicon" id="goVariantList"></button>
 		</script>
 		<!-- /control Regin view -->
 
@@ -155,7 +159,7 @@
 
 		<!-- tile-list -->
 		<script type="text/template" id="tile-list">
-			<h2 class="text-center">Tile variant.</h2>
+
 		</script>
 		<!-- /tile-list -->
 
