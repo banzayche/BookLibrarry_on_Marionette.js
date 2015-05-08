@@ -17,11 +17,10 @@ var modelCollection = myLibrarryApp.module('modelCollection', function(modelColl
 		    "title" : undefined,
 		    "author" : undefined,
 		    "year" : undefined,
-		    "description" : 'None description.',
+		    "description" : 'Not specified.',
 		    "genre" : undefined,
 		    "id" : undefined
 		},
-
 		accordance: function(filterVal){
 			// если роут ровняется all - то вернет "правда" для всех моделей
 			if(this.get('genre') === filterVal){
@@ -35,6 +34,8 @@ var modelCollection = myLibrarryApp.module('modelCollection', function(modelColl
 		// это url адресс запроса для модели
 		urlRoot: '/api/books'
 	});
+
+	
 	// коллекция для наших моделей
 	modelCollection.CollectionBook = Backbone.Collection.extend({
 		// на основе какого конструктора будут строиться модели коллекции
@@ -48,7 +49,6 @@ var modelCollection = myLibrarryApp.module('modelCollection', function(modelColl
 		comparator: function(model){
 			return model.get(this.sortAttribute);
 		},
-
 		// это url адресс запроса для коллекции
 		url: '/api/books'
 	});

@@ -16,7 +16,7 @@ var routerController = myLibrarryApp.module('routerController', function(routerC
 
 	// Добавим контроллер
 	routerController.GeneralController = Marionette.Controller.extend({
-
+		// -------------------------Обработка роутов-------------------------
 		control404_edit: function(id){this.control404_part2(id,'edit')},
 		control404_detail: function(id){this.control404_part2(id,'detail')},
 		
@@ -30,42 +30,15 @@ var routerController = myLibrarryApp.module('routerController', function(routerC
 			activeModel.fetch({
 				success: function(){
 					if(direction === 'edit'){
-						there.editBook(id, activeModel);
+						there.showEditBook(id, activeModel);
 					} else {
-						there.detailBook(id, activeModel);
+						there.showDetailBook(id, activeModel);
 					}
 				},
 				error: function(one, responseStatus, three){
 					Backbone.history.navigate('page-404', {trigger:true, replace: true });
 				},
 			});
-		},
-		
-		editBook: function(id, activeModel){
-			// Если модель новая id не будет - поля пустые
-			// иначе в полях отобразятся значения модели			
-			if( id == null){
-				var book = new MyLibrarryApp.staticViews.EditBookView({	
-					model: activeModel,
-				});
-				MyLibrarryApp.root.showChildView('main', book);
-			} else{
-				// создаем новую вьюху
-				var activeView = new MyLibrarryApp.staticViews.EditBookView({
-					model: activeModel
-				});
-				MyLibrarryApp.root.showChildView('main', activeView);
-
-			}
-			this.showFooter_Header();										
-		},
-		detailBook: function(id, activeModel){
-			// создаем новую вьюху
-			var activeView = new MyLibrarryApp.staticViews.DetailBookView({
-				model: activeModel
-			});
-			MyLibrarryApp.root.showChildView('main', activeView);
-			this.showFooter_Header();			
 		},
 
 		RouterProcessing: function(route){
@@ -84,6 +57,34 @@ var routerController = myLibrarryApp.module('routerController', function(routerC
 					break;
 			};			
 		},
+		
+		// -------------------------Функции прорисовки-------------------------
+		showEditBook: function(id, activeModel){
+			// Если модель новая id не будет - поля пустые
+			// иначе в полях отобразятся значения модели			
+			if( id == null){
+				var book = new MyLibrarryApp.staticViews.EditBookView({	
+					model: activeModel,
+				});
+				MyLibrarryApp.root.showChildView('main', book);
+			} else{
+				var activeView = new MyLibrarryApp.staticViews.EditBookView({
+					model: activeModel
+				});
+				MyLibrarryApp.root.showChildView('main', activeView);
+			}
+			// в не зависимости от id, нужно всеравно рисовать header и footer
+			this.showFooter_Header();										
+		},
+
+		showDetailBook: function(id, activeModel){
+			// создаем новую вьюху
+			var activeView = new MyLibrarryApp.staticViews.DetailBookView({
+				model: activeModel
+			});
+			MyLibrarryApp.root.showChildView('main', activeView);
+			this.showFooter_Header();			
+		},		
 
 		showFooter_Header: function(){
 			var header = new MyLibrarryApp.staticViews.GeneralHeaderView({
@@ -105,25 +106,20 @@ var routerController = myLibrarryApp.module('routerController', function(routerC
 			MyLibrarryApp.root.showChildView('main', page_404);
 		},
 
-		showMain: function(){
-			
+		showMain: function(){			
 			var mainView = new MyLibrarryApp.listViews.mainLayoutView({
 				collection: MyLibrarryApp.GeneralCollection,
 			});
 
 			MyLibrarryApp.root.showChildView('main', mainView);
 		},
-
 	});
 	
+	// инициализируем наш роут и контроллер, только когда все прогрузилось
 	$( document ).ready(function() {
     	var generalController = new routerController.GeneralController()
 		var generalRouter = new routerController.GeneralRouter({
 			controller: generalController,
 		});
-	});
-
-	MyLibrarryApp.on('start', function(){
-		console.log('book-application has been started');		
 	});
 });

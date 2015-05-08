@@ -44,12 +44,11 @@ var TileListViews = myLibrarryApp.module('TileListViews', function(TileListViews
 		template: "#tile-list",
 		// какое дочерние представление будет использоваться для отображения элементов коллекции
 		childView:  TileListViews.BookItemView,
-		// // представление для пустой коллекции
+		// представление для пустой коллекции
 		emptyView: TileListViews.NoChildView,
 
 		initialize: function(){
 			this.listenTo(MyLibrarryApp.request('filterState'), 'change', this.render, this);
-			console.log(MyLibrarryApp.GeneralCollection);
 		},
 
 		// -------------------------------------------------------------

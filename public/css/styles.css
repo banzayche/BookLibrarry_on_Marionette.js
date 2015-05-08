@@ -116,6 +116,9 @@ body{
 	  border-radius: 5px;
 }
 
+button.btn-success{
+	background-color: rgb(85, 194, 11); 
+}
 
 tbody td{
 	  line-height: 30px !important;

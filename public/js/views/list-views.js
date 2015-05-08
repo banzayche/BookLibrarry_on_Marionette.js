@@ -103,10 +103,12 @@ var listViews = myLibrarryApp.module('listViews', function(listViews, MyLibrarry
 			'click @ui.goVarianListView' : 'goVarianListView'
 		},
 
-		onRender: function(){
+		onShow: function(){
+			this.showFilter();
 			this.togleIconVariant();
 		},
 
+		// действие по нажатию на кнопку смены расположения моделей
 		goVarianListView: function(){
 			if(MyLibrarryApp.request('filterState').get('list_type') === 'tile'){
 				MyLibrarryApp.request('filterState').set("list_type", 'table');
@@ -115,6 +117,7 @@ var listViews = myLibrarryApp.module('listViews', function(listViews, MyLibrarry
 			}			
 		},
 
+		// смена иконки на кнопке
 		togleIconVariant: function(){
 			if(MyLibrarryApp.request('filterState').get('list_type') === 'tile'){
 				this.ui.goVarianListView.removeClass('glyphicon-th');
@@ -125,10 +128,8 @@ var listViews = myLibrarryApp.module('listViews', function(listViews, MyLibrarry
 			}
 			
 		},
-
-		onShow: function(){
-			this.showFilter();
-		},
+		
+		// Выводим список атрибутов для фильтрации
 		showFilter: function(){
 			var self = this;
 			var pluckOBJ = _.pluck(self.collection.toJSON(), 'genre');
@@ -138,11 +139,14 @@ var listViews = myLibrarryApp.module('listViews', function(listViews, MyLibrarry
 				self.ui.genreContainer.append('<li><a class="filter-genre">'+filter[i]+'</a></li>');
 			}
 		},
+
 		// функция смены атрибута фильтрации, у нашей вспомогательной модели
 		setFilterAttribute: function(e){
 			var attrFilter = $(e.target).html();
 			myLibrarryApp.request('filterState').set("filter", attrFilter);
 		},
+
+		// переходим к созданию книги
 		goCreateBook: function(){
 			Backbone.history.navigate('book/create', {trigger:true, replace: true });
 		},
@@ -157,13 +161,16 @@ var listViews = myLibrarryApp.module('listViews', function(listViews, MyLibrarry
 			controlRegion: '#control-region'
 		},
 		initialize: function(){
+			// слушаем изменение атрибута list-type у модели
 			this.listenTo(MyLibrarryApp.request('filterState'), 'change:list_type', this.shoiceVariant, this);
 		},
 		onShow: function(){
 			this.shoiceVariant();
 		},
+
+		// Определяем какой вариант прорисовки модели выбрать
 		shoiceVariant: function(){
-			// Смотрим значение атрибута нашей вспомогательной модели и рисуем в соответствии со значением 
+			// Смотрим значение атрибута нашей вспомогательной модели
 			if(MyLibrarryApp.request('filterState').get('list_type') === 'tile'){
 				this.tileShow();
 			} else{
@@ -175,12 +182,16 @@ var listViews = myLibrarryApp.module('listViews', function(listViews, MyLibrarry
 			});
 			this.getRegion('controlRegion').show(controlListBooks);
 		},
+
+		// книги плиткой
 		tileShow: function(){
 			var mainView = new MyLibrarryApp.TileListViews.BookListView({
 				collection: this.collection,
 			});
 			this.getRegion('listRegion').show(mainView);		
 		},
+		
+		// книги таблицей
 		tableShow: function(){
 			var mainViewNew = new MyLibrarryApp.listViews.BookListView({
 				collection: this.collection,
