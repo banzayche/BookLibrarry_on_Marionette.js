@@ -1,6 +1,7 @@
 /*global Backbone */
 'use strict';
 
+// Создаем модуль который будет содержать в себе нашу модель и коллекцию
 var modelCollection = myLibrarryApp.module('modelCollection', function(modelCollection, MyLibrarryApp, Backbone){
 	// модель книги
 	modelCollection.Book = Backbone.Model.extend({
@@ -13,6 +14,8 @@ var modelCollection = myLibrarryApp.module('modelCollection', function(modelColl
 		    "genre" : undefined,
 		    "id" : undefined
 		},
+
+		// этот метод помогает нам производить фильтрацию, без воздействия на коллекцию
 		accordance: function(filterVal){
 			// если роут ровняется all - то вернет "правда" для всех моделей
 			if(this.get('genre') === filterVal){
@@ -23,6 +26,7 @@ var modelCollection = myLibrarryApp.module('modelCollection', function(modelColl
 				return false;
 			}
 		},
+
 		// это url адресс запроса для модели
 		urlRoot: '/api/books'
 	});
@@ -33,6 +37,7 @@ var modelCollection = myLibrarryApp.module('modelCollection', function(modelColl
 		// на основе какого конструктора будут строиться модели коллекции
 		model: modelCollection.Book,
 		
+		// методы ниже, помогают реализовать сортировку коллекции
 		sortAttribute: 'title',
 		goSort: function(sortAttribute){
 			this.sortAttribute = sortAttribute;
@@ -41,6 +46,7 @@ var modelCollection = myLibrarryApp.module('modelCollection', function(modelColl
 		comparator: function(model){
 			return model.get(this.sortAttribute);
 		},
+		
 		// это url адресс запроса для коллекции
 		url: '/api/books'
 	});

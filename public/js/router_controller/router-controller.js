@@ -4,12 +4,12 @@
 var routerController = myLibrarryApp.module('routerController', function(routerController, MyLibrarryApp, Backbone){
 	// Добавим роутер
 	routerController.GeneralRouter = Backbone.Marionette.AppRouter.extend({
-
-		// будем обрабатывать все роуты и лишь потом вычислять, какие действия предпринимать
+		// для первых 3-х роутов есть свои определенные функции обработки, в иных случаяях будет использоваться функция с общей логикой
 		appRoutes: {			
 			'book/:id/edit': 'control404_edit',
 			'book/:id/detail': 'control404_detail',
 			'book/create': 'control404_edit',
+
 			'*route' : 'RouterProcessing',			
 		},	
 	});
@@ -17,6 +17,8 @@ var routerController = myLibrarryApp.module('routerController', function(routerC
 	// Добавим контроллер
 	routerController.GeneralController = Marionette.Controller.extend({
 		// -------------------------Обработка роутов-------------------------
+		//функции обработки 1-х 3-х роутов 
+
 		control404_edit: function(id){this.control404_part2(id,'edit')},
 		control404_detail: function(id){this.control404_part2(id,'detail')},
 		
@@ -41,6 +43,7 @@ var routerController = myLibrarryApp.module('routerController', function(routerC
 			});
 		},
 
+		// функция обработки роутов для общих случаев
 		RouterProcessing: function(route){
 			console.log('I have working with '+route+' route');
 			switch (route) {

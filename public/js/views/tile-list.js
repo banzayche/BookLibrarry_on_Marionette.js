@@ -1,6 +1,7 @@
 /*global Backbone */
 'use strict';
 
+// это модуль, который содержит в себе представления, для изображения списка книг в виде плитки
 var TileListViews = myLibrarryApp.module('TileListViews', function(TileListViews, MyLibrarryApp, Backbone){
 	// Это наше представление одной модели
 	TileListViews.BookItemView = Backbone.Marionette.ItemView.extend({
@@ -31,7 +32,7 @@ var TileListViews = myLibrarryApp.module('TileListViews', function(TileListViews
 		},
 	});
 
-	// View for empty collection
+	// Представление для пустой коллекции
 	TileListViews.NoChildView = Backbone.Marionette.ItemView.extend({
 		tagName: 'div',
 		// указали шаблон
@@ -51,7 +52,7 @@ var TileListViews = myLibrarryApp.module('TileListViews', function(TileListViews
 			this.listenTo(MyLibrarryApp.request('filterState'), 'change', this.render, this);
 		},
 
-		// -------------------------------------------------------------
+		// ------------------------------------------------------------------------------
 		// изменяем стандартную функцию прорисовки моделей из коллекции
 		addChild: function(childModel){
 			var newFilter = MyLibrarryApp.request('filterState').get('filter');
@@ -61,6 +62,6 @@ var TileListViews = myLibrarryApp.module('TileListViews', function(TileListViews
 				Backbone.Marionette.CompositeView.prototype.addChild.apply(this, arguments);
 			}
 		},
-		// -------------------------------------------------------------
+		// ------------------------------------------------------------------------------
 	});
 });

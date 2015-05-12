@@ -16,6 +16,7 @@ var listViews = myLibrarryApp.module('listViews', function(listViews, MyLibrarry
 			'click @ui.edit' : "goEdit",
 			'dblclick' : 'goDetail'
 		},
+		// это метод Marionette для прослушивания событий модели
 		modelEvents: {
 			'change' : 'render',
 		},
@@ -32,7 +33,7 @@ var listViews = myLibrarryApp.module('listViews', function(listViews, MyLibrarry
 		},
 	});
 
-	// View for empty collection
+	// Представление для пустой коллекции
 	listViews.NoChildView = Backbone.Marionette.ItemView.extend({
 		tagName: 'tr',
 		id: 'empty-collection',
@@ -47,12 +48,12 @@ var listViews = myLibrarryApp.module('listViews', function(listViews, MyLibrarry
 		template: "#list-region-template",
 		// какое дочерние представление будет использоваться для отображения элементов коллекции
 		childView:  listViews.BookItemView,
-		// представление для пустой коллекции
+		// какое дочерние представление будет использоваться для отображения пустой коллекции
 		emptyView: listViews.NoChildView,
 
 		initialize: function(){
+			// слушаем изменение нашей вспомогательной модели и рендерим, если что-то изменилось.
 			this.listenTo(MyLibrarryApp.request('filterState'), 'change', this.render, this);
-			console.log(MyLibrarryApp.GeneralCollection);
 		},
 
 		ui: {
@@ -76,10 +77,6 @@ var listViews = myLibrarryApp.module('listViews', function(listViews, MyLibrarry
 		},
 		// -------------------------------------------------------------
 
-		filterStart: function(){
-			alert(myLibrarryApp.request('filterState').get('filter'));
-		},
-
 		sortOperation: function(e){
 			var sortAttribute = $(e.target).html().toLowerCase()
 			this.collection.goSort(sortAttribute);
@@ -87,7 +84,7 @@ var listViews = myLibrarryApp.module('listViews', function(listViews, MyLibrarry
 	});
 
 
-	// control panel view
+	// представление контрольной панели (там, где кнопка "создать новую модель" и список существующих атрибутов для фильтрации)
 	listViews.ControlForList = Backbone.Marionette.ItemView.extend({
 		// указали шаблон
 		template: '#control-list-region-template',
@@ -117,7 +114,7 @@ var listViews = myLibrarryApp.module('listViews', function(listViews, MyLibrarry
 			}			
 		},
 
-		// смена иконки на кнопке
+		// смена иконки на кнопке смены расположения моделей
 		togleIconVariant: function(){
 			if(MyLibrarryApp.request('filterState').get('list_type') === 'tile'){
 				this.ui.goVarianListView.removeClass('glyphicon-th');
@@ -152,7 +149,7 @@ var listViews = myLibrarryApp.module('listViews', function(listViews, MyLibrarry
 		},
 	});
 
-	// Layout view
+	// это представление содержит в себе 2 региона: для отображение списка моделей и контрольной панели.
 	listViews.mainLayoutView = Backbone.Marionette.LayoutView.extend({
 		className: 'table-responsive',
 		template: '#book-list-layout-template',
@@ -177,6 +174,7 @@ var listViews = myLibrarryApp.module('listViews', function(listViews, MyLibrarry
 				this.tableShow();
 			}
 
+			// контрольная панель в обеих случаях одна и та же, поэтому она не зависит от вышеуказанных условий
 			var controlListBooks = new MyLibrarryApp.listViews.ControlForList({
 				collection: this.collection,
 			});

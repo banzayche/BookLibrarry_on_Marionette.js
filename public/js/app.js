@@ -15,6 +15,7 @@ var MyLibrarryApp = Marionette.Application.extend({
 				Backbone.history.start({pushState: true});
 			});
 	},
+	// Этот метод создан нами
 	setRootLayout: function(){		
 		// это будет главная вьюха нашего приложения
 		this.root = new this.staticViews.GeneralView();
@@ -24,8 +25,9 @@ var MyLibrarryApp = Marionette.Application.extend({
 window.myLibrarryApp = new MyLibrarryApp();
 
 // В этой функции содержится вспомогательная модель и запрос-ответ, который эту модель и возвращает  
+// это тоже своеобразный модуль нашего приложения
 (function(){
-	// модель со значением фильтрации
+	// модель со значением фильтрации и значением представления списка книг(таблица или плитка)
 	var filterState = new Backbone.Model({
 	  	filter: 'all',
 		list_type:  'tile'

@@ -2,7 +2,7 @@
 'use strict';
 
 var staticViews = myLibrarryApp.module('staticViews', function(staticViews, MyLibrarryApp, Backbone){
-	// создаем конструктор для нашего главного представления рутового
+	// создаем конструктор для нашего главного представления (рутового)
 	staticViews.GeneralView = Backbone.Marionette.LayoutView.extend({
 		// указываем уже существующий в дом, элемент
 		el: "#general-template",
@@ -12,6 +12,8 @@ var staticViews = myLibrarryApp.module('staticViews', function(staticViews, MyLi
 			main: "#main",
 			footer: "#footer"
 		},
+
+		// console.log, просто, чтобы увидеть, что приложение запустилось
 		initialize: function(){
 			console.log('general view has been created');
 		}
@@ -32,7 +34,9 @@ var staticViews = myLibrarryApp.module('staticViews', function(staticViews, MyLi
 		className: 'detail-book',
 		// указываем уже существующий в дом, элемент
 		template: '#book-detail-template',
+		// это представление конкретной модели и мы указываем что за конструктор модели использовать
 		model: MyLibrarryApp.modelCollection.Book,
+		// здесь указываем присущие этому представлению UI элементы
 		ui: {
 			cancel : '#cancel',
 		},
@@ -40,6 +44,7 @@ var staticViews = myLibrarryApp.module('staticViews', function(staticViews, MyLi
 			'click @ui.cancel' : "goCancel",
 		},
 
+		// функция закрытия - просто переход на начальную страницу
 		goCancel: function(){
 			Backbone.history.navigate('home', {trigger:true, replace: true });
 		}
@@ -67,15 +72,20 @@ var staticViews = myLibrarryApp.module('staticViews', function(staticViews, MyLi
 			'click @ui.cancel' : "goCancel",
 		},
 
+		// для сохранения функции
 		goSave: function(){
+			// так, как UI элементы уже указаны то мы можем ссылаться на них this.ui. ...
 			var title = this.ui.title.val().trim();
 			var author = this.ui.author.val().trim();
 			var year = this.ui.year.val().trim();
 			var genre = this.ui.genre.val().trim();
 			var description = this.ui.description.val().trim();
 			
+			// если указанные поля не пусты то создаем модель в коллекции и переходим на главную
 			if(title && author && year && genre){
+				// если модель новая - мы должны создать ее в коллекции
 				if(this.model.isNew()){
+					// create потому, что это даст событие изменение колекции и обновит представление без дополнительного обращения к серверу.
 					MyLibrarryApp.GeneralCollection.create({
 						title: title,
 						author: author,
@@ -84,8 +94,9 @@ var staticViews = myLibrarryApp.module('staticViews', function(staticViews, MyLi
 						description: description,
 					});
 					Backbone.history.navigate('home', {trigger:true, replace: true });
-				} else{
-					this.ui.error.hide();
+				} else{					
+					// иначе - просто сохранить
+					// savе - потому, что модель уже существует в колекции и ее изменение вызовет событие изменения коллекции.
 					this.model.save({
 						title: title,
 						author: author,
@@ -95,8 +106,9 @@ var staticViews = myLibrarryApp.module('staticViews', function(staticViews, MyLi
 					}).done(function(){
 						Backbone.history.navigate('home', {trigger:true, replace: true });
 					});
-				}			
+				}				
 			} else{
+				// иначе - показываем сообщение об ощибке
 				this.ui.error.show();
 			}
 		},
