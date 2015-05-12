@@ -5,14 +5,6 @@ var modelCollection = myLibrarryApp.module('modelCollection', function(modelColl
 	// модель книги
 	modelCollection.Book = Backbone.Model.extend({
 		// как и в backbone, пишем, какие атрибуты будут по умолчанию у модели
-		defults: {
-			title: undefined,
-			author: undefined,
-			year: undefined,
-			description: undefined,
-			genre: undefined,
-			id: undefined
-		},
 		defaults: {
 		    "title" : undefined,
 		    "author" : undefined,
